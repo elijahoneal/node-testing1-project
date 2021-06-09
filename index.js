@@ -78,6 +78,8 @@ class Seasons {
    */
   constructor() {
     // ✨ initialize whatever properties are needed
+    this.season = ['summer', 'fall', 'winter', 'spring']
+    this.index = 0
   }
 
   /**
@@ -94,7 +96,19 @@ class Seasons {
    */
   next() {
     // ✨ implement
+    for ( let i = 0; i <= 4; i++) {
+      if(this.index === 4 ){
+        this.index = 0
+        return this.season[this.index++]
+      } else {
+        return this.season[this.index++]
+      }
+    }
+    
+    
   }
+
+ 
 }
 
 class Car {
