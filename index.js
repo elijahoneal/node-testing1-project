@@ -8,6 +8,10 @@
  */
 function trimProperties(obj) {
   // ✨ implement
+  const newObj = Object.assign( {} , obj )
+  Object.keys(newObj).map( key => newObj[key] = newObj[key].trim() )
+  return newObj
+  
 }
 
 /**
@@ -20,6 +24,7 @@ function trimProperties(obj) {
  */
 function trimPropertiesMutation(obj) {
   // ✨ implement
+  
 }
 
 /**
