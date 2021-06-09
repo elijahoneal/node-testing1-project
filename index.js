@@ -8,6 +8,10 @@
  */
 function trimProperties(obj) {
   // ✨ implement
+  const newObj = Object.assign( {} , obj )
+  Object.keys(newObj).map( key => newObj[key] = newObj[key].trim() )
+  return newObj
+  
 }
 
 /**
@@ -20,6 +24,8 @@ function trimProperties(obj) {
  */
 function trimPropertiesMutation(obj) {
   // ✨ implement
+  Object.keys(obj).map( key => obj[key] = obj[key].trim() )
+  return obj
 }
 
 /**
@@ -32,6 +38,8 @@ function trimPropertiesMutation(obj) {
  */
 function findLargestInteger(integers) {
   // ✨ implement
+ let numArr = integers.map( num => Number(Object.values(num)) )
+ return Math.max(...numArr)
 }
 
 class Counter {
@@ -41,6 +49,7 @@ class Counter {
    */
   constructor(initialNumber) {
     // ✨ initialize whatever properties are needed
+    this.initialNumber = initialNumber
   }
 
   /**
@@ -57,6 +66,9 @@ class Counter {
    */
   countDown() {
     // ✨ implement
+     for(let i = this.initialNumber; i >= 0; i--  ){
+      return this.initialNumber--
+    }
   }
 }
 
@@ -66,6 +78,8 @@ class Seasons {
    */
   constructor() {
     // ✨ initialize whatever properties are needed
+    this.season = ['summer', 'fall', 'winter', 'spring']
+    this.index = 0
   }
 
   /**
@@ -82,7 +96,19 @@ class Seasons {
    */
   next() {
     // ✨ implement
+    for ( let i = 0; i <= 4; i++) {
+      if(this.index === 4 ){
+        this.index = 0
+        return this.season[this.index++]
+      } else {
+        return this.season[this.index++]
+      }
+    }
+    
+    
   }
+
+ 
 }
 
 class Car {
@@ -95,6 +121,7 @@ class Car {
   constructor(name, tankSize, mpg) {
     this.odometer = 0 // car initilizes with zero miles
     this.tank = tankSize // car initiazes full of gas
+    this.mileage = mpg
     // ✨ initialize whatever other properties are needed
   }
 
@@ -113,6 +140,12 @@ class Car {
    */
   drive(distance) {
     // ✨ implement
+    const gas = this.tank * this.mileage
+    if( this.odometer === gas ){
+      return 'Car Stops'
+    } else {
+      return this.odometer += distance
+    }
   }
 
   /**
@@ -128,6 +161,14 @@ class Car {
    */
   refuel(gallons) {
     // ✨ implement
+    const gas = this.tank * this.mileage
+    const miles = this.mileage * gallons
+
+    if( miles === gas || miles > gas ){
+      return gas
+    } else {
+      return miles
+    }
   }
 }
 
@@ -150,8 +191,15 @@ class Car {
  *    // error.message is "number must be a number"
  * })
  */
-function isEvenNumberAsync(number) {
+async function isEvenNumberAsync (number) {
   // ✨ implement
+  const Truthy = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(number);
+    }, 300);
+  });
+  Truthy.then( num => (num % 2 == 0) ? true: false )
+        .catch( err => console.log(err.message, "number must be a number"))
 }
 
 module.exports = {
