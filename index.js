@@ -121,6 +121,7 @@ class Car {
   constructor(name, tankSize, mpg) {
     this.odometer = 0 // car initilizes with zero miles
     this.tank = tankSize // car initiazes full of gas
+    this.mileage = mpg
     // ✨ initialize whatever other properties are needed
   }
 
@@ -139,6 +140,12 @@ class Car {
    */
   drive(distance) {
     // ✨ implement
+    const gas = this.tank * this.mileage
+    if( this.odometer === gas ){
+      return 'Car Stops'
+    } else {
+      return this.odometer += distance
+    }
   }
 
   /**
@@ -154,6 +161,14 @@ class Car {
    */
   refuel(gallons) {
     // ✨ implement
+    const gas = this.tank * this.mileage
+    const miles = this.mileage * gallons
+
+    if( miles === gas || miles > gas ){
+      return gas
+    } else {
+      return miles
+    }
   }
 }
 
@@ -176,8 +191,15 @@ class Car {
  *    // error.message is "number must be a number"
  * })
  */
-function isEvenNumberAsync(number) {
+async function isEvenNumberAsync (number) {
   // ✨ implement
+  const Truthy = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(number);
+    }, 300);
+  });
+  Truthy.then( num => (num % 2 == 0) ? true: false )
+        .catch( err => console.log(err.message, "number must be a number"))
 }
 
 module.exports = {

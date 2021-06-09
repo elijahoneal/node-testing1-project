@@ -104,15 +104,34 @@ describe('[Exercise 6] Car', () => {
   beforeEach(() => {
     focus = new utils.Car('focus', 20, 30) // each test must start with a fresh car
   })
-  test.todo('[15] driving the car returns the updated odometer')
-  test.todo('[16] driving the car uses gas')
-  test.todo('[17] refueling allows to keep driving')
-  test.todo('[18] adding fuel to a full tank has no effect')
+  test('[15] driving the car returns the updated odometer', () => {
+    expect(focus.drive(100)).toBe(100)
+  })
+  test('[16] driving the car uses gas', () => {
+    expect(focus.drive(600)).toBe(600)
+    expect(focus.drive(600)).toBe('Car Stops')
+  })
+  test('[17] refueling allows to keep driving', () => {
+    focus.drive(600)
+    expect(focus.refuel(10)).toBe(300)
+
+  })
+  test('[18] adding fuel to a full tank has no effect', () => {
+    expect(focus.refuel(99)).toBe(600)
+  })
 })
 
 describe('[Exercise 7] isEvenNumberAsync', () => {
-  test.todo('[19] resolves true if passed an even number')
-  test.todo('[20] resolves false if passed an odd number')
-  test.todo('[21] rejects an error with the message "number must be a number" if passed a non-number type')
-  test.todo('[22] rejects an error with the message "number must be a number" if passed NaN')
+  test('[19] resolves true if passed an even number', () => {
+    expect(utils.isEvenNumberAsync(2)).toBe(true)
+  })
+  test('[20] resolves false if passed an odd number', () => {
+    expect(utils.isEvenNumberAsync(3)).toBe(false)
+  })
+  test('[21] rejects an error with the message "number must be a number" if passed a non-number type', () => {
+    expect(utils.isEvenNumberAsync('two')).toBe(/"number must be a number"/i)
+  })
+  test('[22] rejects an error with the message "number must be a number" if passed NaN', () => {
+    expect(utils.isEvenNumberAsync(NaN)).toBe(/"number must be a number"/i)
+  })
 })
